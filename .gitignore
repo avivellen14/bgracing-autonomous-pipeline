@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Ignore generated result images, but keep the folder
+results/*.png
+results/*.jpg
+!results/.gitkeep

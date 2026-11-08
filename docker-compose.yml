@@ -1,0 +1,31 @@
+services:
+  publisher:
+    build:
+      context: ./publisher_container
+    container_name: track_publisher
+    environment:
+      - ROS_DOMAIN_ID=10
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/data:ro
+      - ./results:/results:rw
+    networks:
+      - ros_net
+    restart: "no"
+
+  processor:
+    build:
+      context: ./processor_container
+    container_name: track_processor
+    environment:
+      - ROS_DOMAIN_ID=10
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./results:/results:rw
+    networks:
+      - ros_net
+    restart: "no"
+
+networks:
+  ros_net:
+    driver: bridge
